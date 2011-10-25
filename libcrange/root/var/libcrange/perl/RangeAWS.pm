@@ -1,6 +1,7 @@
 package RangeAWS;
 
 use Amazon::EC2::Client;
+use Amazon::EC2::Model::DescribeImagesRequest;
 
 my $AWS_ACCESS_KEY_ID        = q(AKIAJVMKABQKHBE574MQ);
 my $AWS_SECRET_ACCESS_KEY    = q(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);
