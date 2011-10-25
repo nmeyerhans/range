@@ -17,6 +17,7 @@ sub ami {
     my $service = Amazon::EC2::Client->new($AWS_ACCESS_KEY_ID,
 					   $AWS_SECRET_ACCESS_KEY,
 					   $conf);
+    my $request = Amazon::EC2::Model::DescribeImagesRequest->new;
     my @result = invokeDescribeImages($service, 
 				      $request->withImageId("ami-971945d2"));
     return @result;
