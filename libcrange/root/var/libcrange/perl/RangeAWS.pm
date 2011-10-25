@@ -1,4 +1,4 @@
-package LibrangeUtils;
+package RangeAWS;
 
 use Amazon::EC2::Client;
 
