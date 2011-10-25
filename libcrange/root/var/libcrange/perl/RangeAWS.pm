@@ -1,7 +1,7 @@
 package RangeAWS;
 
 use Amazon::EC2::Client;
-use Amazon::EC2::Model::DescribeImagesRequest;
+use Amazon::EC2::Model::DescribeInstancesRequest;
 
 my $AWS_ACCESS_KEY_ID        = q(AKIAJVMKABQKHBE574MQ);
 my $AWS_SECRET_ACCESS_KEY    = q(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);
@@ -18,19 +18,18 @@ sub ami {
     my $service = Amazon::EC2::Client->new($AWS_ACCESS_KEY_ID,
 					   $AWS_SECRET_ACCESS_KEY,
 					   $conf);
-    my $request = Amazon::EC2::Model::DescribeImagesRequest->new;
-    my @result = invokeDescribeImages($service, 
-				      $request->withImageId("ami-971945d2"));
+    my $request = Amazon::EC2::Model::DescribeInstancesRequest->new;
+    my @result = invokeDescribeInstances($service, $request);
     return @result;
 }
 
-sub invokeDescribeImages {
+sub invokeDescribeInstances {
     my ($service, $request) = @_;
-    my $response = $service->describeImages($request);
-    if ($response->isSetDescribeImagesResult()) {
-	my $describeImagesResult = $response->getDescribeImagesResult();
-	my $imageList = $describeImagesResult->getImage();
-	return @$imageList;
+    my $response = $service->describeInstances($request);
+    if ($response->isSetDescribeInstancesResult()) {
+	my $describeInstancesResult = $response->getDescribeInstancesResult();
+	my $instanceList = $describeInstancesResult->getInstanceId();
+	return @$instanceList;
     } else {
 	return [];
     }
