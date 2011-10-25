@@ -26,6 +26,7 @@ sub ami {
 
 sub invokeDescribeImages {
     my ($service, $request) = @_;
+    my $response = $service->describeImages($request);
     if ($response->isSetDescribeImagesResult()) {
 	my $describeImagesResult = $response->getDescribeImagesResult();
 	my $imageList = $describeImagesResult->getImage();
